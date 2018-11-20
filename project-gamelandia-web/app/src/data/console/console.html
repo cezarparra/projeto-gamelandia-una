@@ -1,0 +1,126 @@
+<head>
+    
+      <link data-require="bootstrap-css@3.1.1" data-semver="3.1.1" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+      <script data-require="angular.js@1.4.7" data-semver="1.4.7" src="https://code.angularjs.org/1.4.7/angular.js"></script>
+      <script data-require="jquery@*" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    
+</head>
+  
+  <div>
+    <button type="button" ng-hide="mostrarBotaoCadastro" ng-click="show()">
+      Cadastrar Console
+    </button>
+
+  
+    <br>
+  
+    <form ng-hide="!showAddEditConsole">
+
+      
+      <div>
+        <label>Nome do Console</label>
+        <input type="text" placeholder="Insira o nome do Console" ng-model="console.nomeConsole" required>
+      </div>
+  
+      <div>
+        <label>Quantidade de Estoque</label>
+        <input type="text" maxlength="6" ng-model="console.qtdeEstoque" required>
+      </div>
+  
+      <div>
+        <label>Tempo de Uso</label>
+        <select ng-model="console.statusConsole" ng-options="o as o for o in options"></select>
+      </div>
+      
+  
+      <div>
+        <label>Preço</label>
+        <input type="text"  placeholder="Insira o preço do console" ng-model="console.precoConsole" required>
+      </div>
+     
+      <div>
+        <label>Imagem</label>
+        
+        <table class="table table-bordered">
+          <tr>
+              <td><input type="file" id="selectedFile" class="custom-file-input" fileread="uploadme"></td>
+          </tr>
+      </table>
+  
+      <!--img src="{{vm.uploadme}}" width="100" height="100"-->
+      </div>
+
+      
+      <button type="button" ng-show="showBtnEdit" ng-click="editConsoleUpload()"><i class="fa fa-edit" style="font-size:24px"></i></button>
+      <button type="button" ng-show="showBtnSave" ng-click="upload()"><i class="fa fa-save" style="font-size:24px"></i></button>
+      <button type="button" ng-click="hide()"><i class="fa fa-close" style="font-size:24px"></i></button>
+    </form>
+  </div>
+  
+  <div ng-show="mostrarConsoles">
+      <br>
+        <input type="text" ng-model="procurar" class="form-control" placeholder="Procurar...">
+        <br>
+        <div>
+            <label style="text-align: center; color: black; font-family: 'Open Sans', arial, sans-serif; font-size: 25px;">Consoles Cadastrados</label>
+        </div>
+      
+      <table style="border:10; width:100; height:100; vertical-align:baseline;">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Console</th>
+            <th>Quantidade no Estoque</th>
+            <th>Uso</th>
+            <th>Preço</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr style="font-size: 20px; font-family: Comic Sans MS;" dir-paginate="console in consoles|filter:procurar|orderBy:sortKey:reverse|itemsPerPage:5">
+          
+            <td><img src="{{console.arquivoConsole}}" width="150" height="170"></td>
+            <td>{{ console.nomeConsole }}</td>
+            <td>{{ console.qtdeEstoque }}</td>
+            <td>{{ console.statusConsole }} </td>
+            <td>R{{ console.precoConsole | currency }}</td>   
+            <td>
+            <button ng-click="editConsole(console)"><i class="fa fa-edit"></i></button>
+            <button ng-click="deleteConsole(console)"><i class="fa fa-close"></i></button>
+            <button ng-click="viewConsole(console)"><i class="fa fa-eye"></i></button>
+            <button ng-click="addCart(console)"><i class="fa fa-shopping-cart"></i></button>
+            
+            
+            
+            </td>
+          </tr>
+  
+          
+        </tbody>
+      </table>
+  
+      <dir-pagination-controls max-size="5" boundary-links="true"></dir-pagination-controls>  
+    </div>
+    
+      
+    
+    
+    
+    <div style="text-align:center;" ng-hide="!showGames" ng-click="show()">
+      <form>    
+          <img ng-src="{{gamesFinded.file}}" style="width:300px;height:400px;"></img> <br/>
+          <tbody>
+            <tr>
+              <td> Game : <b>{{ gamesFinded.nomeJogo }}</b></td><br />
+              <td> Ano de Lançamento : <b> {{ gamesFinded.anoLancamento }}</b> </td><br />
+              <td> Preço :<b> R{{ gamesFinded.preco | currency }} </b></td><br />
+              <td> Console : <b> {{ gamesFinded.console }} </b></td>
+              <td>
+              </td>
+            </tr>
+          </tbody>
+      </form>
+
+      <button ng-click="voltar()">Voltar</button>
+    </div>

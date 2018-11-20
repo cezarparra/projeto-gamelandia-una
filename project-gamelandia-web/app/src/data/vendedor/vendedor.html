@@ -1,0 +1,95 @@
+<body>
+  
+    <div>
+        <button type="button" ng-hide="showAddEditVendedor" ng-click="show()">
+            Cadastrar Funcionário
+        </button>
+
+        <form class="table" ng-submit="saveVendedor(vendedor)" ng-hide="!showAddEditVendedor">
+
+            <table>
+                <tr><b>Dados do Funcionário</tr></b>
+                <th>Nome <input type="text" placeholder="Nome do Funcionário" ng-model="vendedor.name" required></th>
+                <th>Email<input type="text" placeholder="Email" ng-model="vendedor.email" required></th>
+                <th>Telefone <input type="text" placeholder="Telefone" mask="(99)9999-9999" ng-model="vendedor.telefoneVendedor" required></th>
+                <th>Celular<input type="text" placeholder="Celular" mask="(99)9?9999-9999" ng-model="vendedor.celularVendedor" required></th>
+                <th>CPF <input type="text" placeholder="CPF" mask="999.999.999-99" ng-model="vendedor.cpfVendedor" required></th>
+                
+            </table>
+
+            <table>
+                <th>Salário <input type="text" placeholder="Salário" ng-model="vendedor.salario" required></th>
+                <th>Comissão <input type="text" placeholder="Porcentagem Comissão %" ng-model="vendedor.porcSalario" required></th>                
+            </table>
+
+            <table>
+                <tr><b>Endereço do Funcionário</tr></b>
+                <th>Rua<input type="text" placeholder="Rua" ng-model="vendedor.endRuaVendedor" required></th>
+                <th>N°<input type="text" placeholder="Número" ng-model="vendedor.endNumeroVendedor" required></th>
+                <th>Bairro <input type="text" placeholder="Bairro" ng-model="vendedor.endBairroVendedor" required></th>
+                <th>Cidade <input type="text" placeholder="Cidade" ng-model="vendedor.endCidadeVendedor" required></th>      
+            </table>
+            
+            <table>
+                <tr>Permissão do Funcionário</tr>
+                <th ng-repeat="permission in permissions"><input id="{{permission.role}}" type="checkbox" checklist-model="vendedor.permissions" checklist-value="permission">
+                <label for="{{permission.role}}">{{permission.role | formatPermission}}</label></th>
+            </table>
+            <div>
+              <label>Senha</label>
+                <input type="{{inputType}}" ng-model="vendedor.password" placeholder="Senha (até 10 caracteres)" />
+                <br>
+                <input type="checkbox" id="checkbox" ng-click="hideShowPassword()" />
+                <label for="checkbox" ng-if="passwordCheckbox">Esconder password</label>
+                <label for="checkbox" ng-if="!passwordCheckbox">Mostrar password</label>                
+          </div>
+            <br><td>
+                <button type="submit">Salvar</button>
+            <button type="button" ng-click="hide()">Cancelar</i></button></button></button></td>
+            </td>
+            
+        </form>
+    </div>
+
+    <body>
+        <div class="table">
+            <br/>
+            <h1>Funcionários Cadastrados</h1>
+
+            <input type="text" ng-model="procurar" class="form-control" placeholder="Procurar..."><br>
+            
+            <table style="border:10px; width: 100%; vertical-align:baseline;">
+                <tr>
+                  <th>Nome</th>
+                  <th>Email</th>
+                  <th>Endereço</th>
+                  <th>Telefone/Celular</th>
+                  <th>CPF</th>
+                  <th>Salário</th>
+                  <th>Porcentagem Comissão</th>
+                  <th>Permissão</th>
+                  <th>Ações</th>
+                </tr>
+                <tr dir-paginate="vendedor in vendedors|filter:procurar|orderBy:sortKey:reverse|itemsPerPage:5">
+                    <td style="width:25%">{{ vendedor.name }}</td>
+                    <td style="width:15%">{{ vendedor.email }}</td>
+                    <td style="width:25%">{{ vendedor.endRuaVendedor }}, {{vendedor.endNumeroVendedor}} - {{ vendedor.endBairroVendedor }} -
+                        {{ vendedor.endCidadeVendedor }}                
+                    </td>
+                    <td style="width:45%">Tel: {{ vendedor.telefoneVendedor }} - Cel:{{ vendedor.celularVendedor }}</td>
+                                    
+                    <td style="width:45%">{{ vendedor.cpfVendedor }}</td>
+                    <td style="width:25%">R{{ vendedor.salario | currency}}</td>
+                    <td style="width:25%">{{vendedor.porcSalario}}  %</td>
+                    
+                    <td>
+                        <div ng-repeat="permission in vendedor.permissions">{{ permission.role | formatPermission}}</div>
+                    <td>
+                        <button class="button" ng-click="editVendedor(vendedor)"><i class="fa fa-edit"></i></button>
+                        <button class="button" ng-click="deleteVendedor(vendedor)"><i class="fa fa-close"></i></i></button>
+                    </td>
+                </tr>
+            </table>
+            <dir-pagination-controls max-size="5" boundary-links="true"></dir-pagination-controls>  
+        </div>
+        </body>

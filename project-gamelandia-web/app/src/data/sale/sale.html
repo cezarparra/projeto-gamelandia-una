@@ -1,0 +1,127 @@
+<head>
+  <style>
+  label{
+    color:red;
+  }
+  
+  </style>
+
+</head>
+<div>
+
+
+  <form ng-submit="saveSale(sale)">
+<h1>Vendedor</h1>
+<select ng-model="login.name" name="vendedor.name" ng-options="login for (4, login) in logins" ng-disabled="true"> </select>
+
+  
+<table>
+    
+  <div>
+    
+    <th>Nome do Cliente</th>
+    <th>Email</th>
+    <th>Rua</th>
+    <th>Bairro</th>
+    <th>Cidade</th>
+    <th>Telefone</th>
+    
+    <tr> 
+      <td>
+    <select class="form-control" name="cliente" ng-model="sale.cliente.id"
+        ng-options="client.id as client.name for client in client" required="true">
+        <option value=''>Selecione o Cliente</option>
+    </select>
+  </td>
+  <td> 
+      <select class="form-control" name="cliente.emailCliente" ng-model="sale.cliente.id"
+      ng-options="client.id as client.emailCliente for client in client" required="true" ng-disabled="true">
+      </select>
+  </td>
+  <td> 
+      <select class="form-control" name="client.enderecoRuaCliente" ng-model="sale.cliente.id"
+      ng-options="client.id as client.enderecoRuaCliente for client in client" required="true" ng-disabled="true">
+      </select>
+  </td>
+  <td> 
+      <select class="form-control" name="client.enderecoBairroCliente" ng-model="sale.cliente.id"
+      ng-options="client.id as client.enderecoBairroCliente for client in client" required="true" ng-disabled="true">
+      </select>
+  </td>
+  <td> 
+      <select class="form-control" name="client.enderecoCidadeCliente" ng-model="sale.cliente.id"
+      ng-options="client.id as client.enderecoCidadeCliente for client in client" required="true" ng-disabled="true">
+      </select>
+  </td>
+  <td> 
+      <select class="form-control" name="client.phone" ng-model="sale.cliente.id"
+      ng-options="client.id as client.phone for client in client" required="true" ng-disabled="true">
+      </select>
+  </td>
+
+  
+  </tr>
+    <br>
+</div>
+</table>
+
+<div>
+
+    <table>    
+      <tbody>
+        <h2>Carrinho</h2>
+        <tr ng-repeat="cart in carts">
+          <td>{{ cart.nomeJogo }}</td>
+          <td>{{ cart.statusJogo }}</td>
+          <td>{{ cart.anoLancamento }}</td>
+          <td>R{{ cart.preco | currency}}</td>
+          <td>{{ cart.console }}</td>
+          <td><button class="gameCSS" ng-click="deleteCart(cart)" ng-click="show()"><i class="fa fa-close" style="font-size:24px"></i></button></td>
+        </tr>
+        <tr ng-repeat="carrinhoConsole in carrinhoConsole"> 
+          <td>{{ carrinhoConsole.nomeConsole }}</td>
+          <td>{{ carrinhoConsole.statusConsole }} </td>
+          <td>R{{ carrinhoConsole.precoConsole | currency }}</td>   
+          <td></td>   
+          <td></td>   
+          <td>
+            <button class="gameCSS" ng-click="deleteConsole(carrinhoConsole)" ng-click="show()"><i class="fa fa-close" style="font-size:24px"></i></button>
+          </td>
+        </tr>
+      </tbody>  
+      </table>
+</div>
+
+
+<table>
+  <tr>
+    <th>Forma de Pagamento</th>
+    <th>Quantidade</th>
+    <th>Tempo de Garantia (Meses)</th>
+    <th>Dinheiro</th>
+    <th>Troco</th>
+    <th>SubTotal</th>
+  </tr>
+  <tr>
+    <td><select ng-model="sale.formPayment" ng-change="update_select()" ng-options="o as o for o in paymentForm"><option value=''>Selecione a forma de Pagamento</option></select></td>
+    <td> <input type="text" placeholder="Insira a quantidade" disabled ng-model="sale.quantidade" required></td>
+    <td><input type="text" placeholder="Insira o tempo de garantia (meses)" ng-model="sale.tempoGarantia" required></td>
+    <td> <input type="text" placeholder="Dinheiro R$" ng-disabled="disableMoneyEntry" ng-model="sale.dinheiro"></td>
+    <td> R{{troco | currency}}</td>
+    <td> R{{(subTotal|currency)}}</td>
+  </tr>
+</table>
+  <div ng-hide="buttonSale">
+    <button type="submit">Salvar</button>
+    <button type="button" ng-click="hide()">Cancelar</button>
+  </div>
+
+  <div ng-hide="buttonOtherSale">
+    <button type="button" ng-click="anotherSale()">Realizar Outra Venda</button>
+  </div>
+    
+  </form>
+
+
+  </div>
+</div>

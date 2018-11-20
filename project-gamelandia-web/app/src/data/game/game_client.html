@@ -1,0 +1,87 @@
+<head>
+    <link data-require="bootstrap-css@3.1.1" data-semver="3.1.1" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+    <script data-require="angular.js@1.4.7" data-semver="1.4.7" src="https://code.angularjs.org/1.4.7/angular.js"></script>
+    <script data-require="jquery@*" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    
+    <style>
+
+
+    .item2 { grid-area: menu; }
+    .item3 { grid-area: auto; } 
+
+
+    .grid-container {
+      grid-template-areas:
+        'header header header header header header'
+        'menu main main main right right'
+        'menu footer footer footer footer footer';
+      grid-gap: 10px;
+      background-color: #2196F3;
+      padding: 10px;
+}
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 10px 0;
+  font-size: 30px;
+}
+  .gameCSS {
+    background:green;
+  }
+
+
+
+    </style>
+</head>
+
+
+<table>   
+  <tr><b>Pesquisar Jogo</tr></b>
+  <th><input type="text" ng-model="procurar" class="form-control" placeholder="Procurar..."></th>
+</table>
+
+  <div ng-hide="showListGames">
+    <table style="border:10px;  vertical-align:baseline;">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Jogo</th>
+          <th>Quantidade no Estoque</th>
+          <th>Uso</th>
+          <th>Data de Lançamento</th>
+          <th>Preço</th>
+          <th>Console</th>
+          <th>Visualizar Capa</th>
+          <th>Adicionar Item</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr  dir-paginate="game in games|filter:procurar|orderBy:sortKey:reverse|itemsPerPage:5">
+          
+          <td><img src="{{game.file}}" width="150" height="150"></td>
+          <td>{{ game.nomeJogo }}</td>
+          <td>{{ game.qtdeEstoque }}</td>
+          <td>{{ game.statusJogo }}</td>
+          <td>{{ game.anoLancamento }} </td>
+          <td>R{{ game.preco | currency }}</td>
+          <td>{{ game.console }}</td>
+          
+          <td><button class="gameCSS" ng-click="viewGame(game)">Visualizar Capa</button></td>
+          <td><button  class="gameCSS" ng-click="addCart(game)">Adicionar Item</button></td>
+        </tr>
+      </tbody>
+      <dir-pagination-controls max-size="5" boundary-links="true"></dir-pagination-controls>  
+    </table>
+  </div>
+
+  <div class="grid-container" ng-hide="searchGame">
+    <div class="item2"><img ng-src="{{game.file}}" style="width:300px;height:400px;"></div>
+    <div class="item3">{{ game.nomeJogo }} - {{ game.console }} - R{{ game.preco | currency }}</div>
+    <div class="item3"><button style="font-size:20px" class="gameCSS" ng-click="addCart(game)">Adicionar no Carrinho  <i class="fa fa-shopping-cart"></i></button></div>
+    <div class="item3"><button style="font-size:20px" class="gameCSS" ng-click="show()">Fechar  <i class="fa fa-close"></i></button></div>
+  </div>
+
+
+ 
+</div>
+</div>

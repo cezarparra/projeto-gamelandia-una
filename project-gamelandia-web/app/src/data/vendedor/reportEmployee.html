@@ -1,0 +1,76 @@
+<head>
+  <style>
+  
+  .buttonSize{
+    font-size: 10px;
+  }
+
+  #notResize {
+  resize: none;
+}
+  </style>
+
+</head>
+<div>  
+  <h1>Relatório de Vendas</h1>
+
+  <table>
+    <tr><b>Buscar Vendas entre Datas</tr></b>
+    
+    <th><input type="text" placeholder="Insira a Data Inicial" mask="99/99/9999" ng-model="date1" size="4" required></th>
+    <th><input type="text" placeholder="Insira a Data Final" mask="99/99/9999" ng-model="date2" size="4" required></th>
+
+      <th><button type="button" ng-click="findSalePerDateBetween(date1, date2)">
+          Procurar entre Datas
+        </button>
+      </th> 
+  </table>
+
+   
+ 
+
+
+
+  
+  <div ng-hide="showInfoSale">
+    <table>
+      <thead>
+        <tr>
+		  <th>Nome do Vendedor</th>
+          <th>Nome do Cliente</th>
+          <th>Jogo(s)</th>
+          <th>Console(s)</th>
+          <th>Data da Venda</th>
+          <th>Preço</th>
+        </tr>		 
+      </thead>
+      <tbody>
+        <tr ng-repeat="allSaleInfo in allSaleInfo">
+		      <td>{{ allSaleInfo.vendedor.name }}</td>
+          <td>{{ allSaleInfo.cliente.name }}</td>
+          <td>
+          <textarea cols="30" style="resize: none;"disabled ng-model="vendaJogo">
+          </textarea>
+          </td>
+          <td><textarea cols="30" style="resize: none; "disabled ng-model="vendaConsole">
+          </textarea></td>
+          <td>{{ allSaleInfo.dataVenda }}</td>
+          <td>R{{ allSaleInfo.precoVenda | currency  }}</td>
+        </tr>
+
+       
+
+      </tbody>
+    </table>
+			  <tr><b>Total de Vendas entre {{date1}} e {{date2}}: </tr><b> R{{ totalVenda | currency }} <br>
+        <tr><b>Total de Jogos Vendidos: </tr></b>{{allSaleInfo.length}}
+		  
+	<table>
+    <th><button type="button" ng-click="gerarRelatorio()">
+      Gerar relatório
+    </button>
+  </th> 
+  </table>
+  </div>
+</div>
+  

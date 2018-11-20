@@ -1,0 +1,75 @@
+<head>
+  <style>
+  table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+  }
+  
+  td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+      background-color: #dddddd;
+  }
+  </style>
+</head>
+<div>
+
+<form ng-submit="saveBuy(buy)" ng-hide="showAddEditBuy">
+<div>
+  <label>Cliente:</label>
+      <select class="form-control" ng-model="login.name" name="vendedor.name" ng-options="login for (4, login) in logins" ng-disabled="true"> </select>
+</select>
+</div>
+<br>
+<div>
+
+  <table>
+      <tr>
+        <th>Jogo</th>
+        <th>Console</th>
+        <th>Preço</th>
+        <th>Quantidade</th>
+      </tr>
+      <tr>
+        <td>
+          <select class="form-control" name="game" ng-model="buy.game.id"
+              ng-options="game.id as game.nomeJogo for game in game" required="true">
+          </select>
+        </td>
+        <td> 
+          <select class="form-control" name="game" ng-model="buy.game.id"
+          ng-options="game.id as game.console.nomeConsole for game in game" required="true" ng-disabled="true"  orderBy:'-game.idConsoleGame.nomeConsole'>
+          </select>
+        </td>
+        <td>
+          <select class="form-control" name="game" ng-model="buy.game.id" 
+          ng-options="game.id as game.preco for game in game" required="true" ng-disabled="true">
+          </select>
+      </td>
+      <td>
+        <select class="form-control" name="game" ng-model="buy.game.id"
+        ng-options="game.id as game.qtdeEstoque for game in game" required="true" ng-disabled="true" >
+        </select>
+    </td>
+      </tr>
+    </table>
+
+</div>
+  <div>
+    <label>Quantidade</label>
+    <input type="text" placeholder="Insira a quantidade" ng-model="buy.quantidade" required>
+  </div>
+  <br>
+
+  <button type="submit">Salvar</button>
+  <button type="button" ng-click="hide()">Cancelar</button>
+</form>
+
+
+
+</div>

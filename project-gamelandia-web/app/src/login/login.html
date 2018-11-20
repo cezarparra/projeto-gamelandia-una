@@ -1,0 +1,21 @@
+<style>
+
+  .button{
+display: inline-block;
+line-height: 20px; /* Tamaño de linea */
+text-align: center;
+vertical-align: middle;
+}
+  </style>
+
+<div class="login-page">
+		<div class="form">
+		  <form class="login-form" ng-submit="login(email, password)">
+			<input type="email"  ng-model="email" placeholder="Email" required autofocus/>
+			<input type="password" ng-model="password" placeholder="Senha" />
+			<button value="Login" class="button" type="Submit">Entrar</button>
+			<p class="message">Não é registrado ? <a href="#/registrar">Crie uma conta grátis</a></p>
+		  </form>
+		</div>
+</div>
+

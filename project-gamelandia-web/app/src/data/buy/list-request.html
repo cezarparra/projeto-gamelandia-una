@@ -1,0 +1,59 @@
+<head>
+  <style>
+  table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+  }
+  
+  td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+      background-color: #dddddd;
+  }
+  </style>
+</head>
+<div>
+
+
+<div>
+  <br/><h2>Lista de Transações</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Cliente</th>
+        <th>Código da Transação</th>
+        <th>Status de Pagamento</th>
+        <th>Data da Compra</th>
+        <th>Nota Gerada ?</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="request in requests">
+          <td>{{ request.id }}</td>
+          <td>{{ request.customerName }}</td>
+          <td>{{ request.transactionCode }}</td>
+          <td>{{ request.status }}</td>
+          <td>{{ request.dateRequest}}</td>
+          <td>{{ request.genNote }}</td>
+        </td>
+        </tr>
+      </tbody>
+  </table>
+</div>
+
+</div>
+
+<div>
+  <label>Digite aqui o código da transação para que gere a Nota Fiscal caso esteja paga </label>
+  <input type="text" ng-model="code"  placeholder="Código da transação disponível no site https://sandbox.pagseguro.uol.com.br/transacoes.html" required>
+  <td><button ng-click="showDataBuy(code)">Buscar</button><br>
+</div>
+
+
+</div>

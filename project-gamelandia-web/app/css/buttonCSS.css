@@ -1,0 +1,16 @@
+  .button {
+    background-color: transparent;
+    display: inline-block;
+    border: none;
+    color: white;
+    padding: 5px 5px;
+    font-size: 10px;
+    cursor: pointer;
+
+    
+}
+
+/* Darker background on mouse-over */
+.button:hover {
+    background-color: RoyalBlue;
+}

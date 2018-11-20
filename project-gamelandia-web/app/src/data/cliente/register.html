@@ -1,0 +1,47 @@
+<head>
+
+</head>
+
+<body>
+<div>
+  <form ng-submit="saveClient(client)" ng-hide="formRegister">
+
+      <table>
+          <tr><b>Dados do Cliente</tr></b>
+          <th>Nome do Cliente<input type="text" placeholder="Nome do Cliente"  ng-model="client.name" required></th>
+          <th>Email<input type="email" placeholder="Email" ng-model="client.emailCliente" required></th>
+          <th>CPF<input type="text" placeholder="CPF" mask="999.999.999-99" ng-model="client.cpf" required></th>
+          <th>Telefone<input type="text" placeholder="Telefone" mask="(99)9999-9999" ng-model="client.phone" required></th>
+          <th>Celular<input type="text" placeholder="Celular" mask="(99)9?9999-9999" ng-model="client.celularCliente" required></th>
+      </table>
+
+      <table>
+          <tr><b>Endereço</tr></b>
+          <th>Rua<input type="text" placeholder="Rua" ng-model="client.enderecoRuaCliente" required></th>
+          <th>N°<input type="text" placeholder="Número" mask="9999" ng-model="client.endNumeroCliente" required></th>
+          <th>Bairro<input type="text" placeholder="Bairro" ng-model="client.enderecoBairroCliente" required></th>
+          <th>Cidade<input type="text" placeholder="Cidade" ng-model="client.enderecoCidadeCliente" required></th>
+          <th>Estado<select ng-model="client.enderecoEstadoCliente" ng-options="item for item in estados" ng-disabled="false"></select></th>
+      </table>
+     <div>
+        <label>Senha</label>
+        
+          <input type="{{inputType}}" ng-model="client.password" placeholder="Senha (até 10 caracteres)" />
+          <br>
+          <input type="checkbox" id="checkbox" ng-click="hideShowPassword()" />
+          <label for="checkbox" ng-if="passwordCheckbox">Esconder password</label>
+          <label for="checkbox" ng-if="!passwordCheckbox">Mostrar password</label>  
+    </div>
+
+  
+
+    <br><br>
+    <button type="submit"><i class="fa fa-save" style="font-size:24px align"></i> Salvar</button>
+    <button type="button" ng-click="hide()"><i class="fa fa-close" style="font-size:24px align"></i> Cancelar</button>
+  </form>
+
+
+  <div ng-hide="redirect">
+   <h1> <li ng-show="!authDetails.authenticated"><a href="#/login">Clique aqui para ser redirecionado a página de Login</a></li></h1>
+  </div>
+</div>

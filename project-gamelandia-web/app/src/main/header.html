@@ -1,0 +1,31 @@
+<head>
+  
+
+</head>
+
+<label style="text-align: center; color: white; font-family: 'Open Sans', arial, sans-serif; font-size:20px;" ng-show="!authDetails.authenticated" ng-controller="headerSrv">Bem Vindo a Gamelândia</label>
+<label style="text-align: center; color: white; font-family: 'Open Sans', arial, sans-serif; font-size:20px;" ng-show="authDetails.authenticated" ng-controller="headerSrv">Bem Vindo {{login.name}}</label>
+
+<nav class="links" ng-controller="headerSrv">
+  <ul>
+      <li ng-show="authDetails.authenticated" ng-show="hasAnyPermission(['ROLE_USER'])"><a href="#/home">Home</a></li>
+      <li ng-show="hasAnyPermission(['ROLE_ADMIN'])"><a href="#/vendedor">Funcionários</a></li>
+      <li ng-show="hasAnyPermission(['ROLE_ADMIN', 'ROLE_EMPLOYEE'])"><a href="#/client">Clientes</a></li>
+      <li ng-show="hasAnyPermission(['ROLE_ADMIN'])"><a href="#/relatorioVendas">Relatório de Vendas</a></li>
+      <li ng-show="hasAnyPermission(['ROLE_ADMIN', 'ROLE_EMPLOYEE'])"><a href="#/jogos">Games</a></li>
+      <li ng-show="hasAnyPermission(['ROLE_ADMIN', 'ROLE_EMPLOYEE'])"><a href="#/console">Console</a></li>
+      <li ng-show="hasAnyPermission(['ROLE_USER'])"><a href="#/jogos/client">Lista de Games</a></li>
+      <li ng-show="hasAnyPermission(['ROLE_ADMIN', 'ROLE_EMPLOYEE'])"><a href="#/realizar-venda">Realizar Venda</a></li>
+      <li ng-show="hasAnyPermission(['ROLE_ADMIN'])"><a href="#/listar-pedidos">Busca Transação</a></li>
+      <li ng-show="hasAnyPermission(['ROLE_USER'])" ><a href="#/carrinho">Carrinho</a></li>
+      <li ng-show="!authDetails.authenticated"><a href="#/login">Login</a></li>
+      <li ng-show="authDetails.authenticated"><a href="#/" ng-click="logout()">Logout</a></li>
+  </ul>
+</nav>
+<nav class="main">
+  <ul>
+    <li class="menu">
+      <a class="fa-bars" href="#menu">Menu</a>
+    </li>
+  </ul>
+</nav>

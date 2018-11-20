@@ -1,0 +1,78 @@
+<head>
+  <style>
+  table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+  }
+  
+  td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+      background-color: #dddddd;
+  }
+
+  .gameCSS {
+    background:green;
+  }
+
+</style>
+  </style>
+</head>
+<div>
+
+<div >
+  <br/><h2>Carrinho</h2>
+  <table style="border:10px;  vertical-align:baseline;" ng-hide="btnFinishedBuy">
+    <thead>
+      <tr>
+          <th></th>        
+          <th>Jogo</th>
+          <th>Tempo de Uso</th>
+          <th>Data de Lançamento</th>
+          <th>Preço</th>
+          <th>Console</th>
+          <th>Visualizar Capa</th>
+          <th>Remover Item</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="font-size: 20px; font-family: Comic Sans MS;" ng-repeat="cart in carts">
+        <td><img ng-src="{{cart.file}}" style="width:150px;height:200px;"></img> <br /></td>
+        <td>{{ cart.nomeJogo }}</td>
+        <td>{{ cart.statusJogo }}</td>
+        <td>{{ cart.anoLancamento }}</td>
+        <td>R{{ cart.preco | currency}}</td>
+        <td>{{ cart.console }}</td>
+        
+        <td><button class="gameCSS" ng-click="viewGame(cart)"><i class="fa fa-eye" style="font-size:24px"></i></button></td>
+        <td><button class="gameCSS" ng-click="deleteCart(cart)" ng-click="show()"><i class="fa fa-close" style="font-size:24px"></i></button></td>
+      </tr>
+    </tbody>    
+  </table>
+
+<div ng-hide="btnFinishedBuy">
+  <label><h2>Preço Total : R{{totalvalue | currency}}</label> </h2>
+  <br>
+  <button class="gameCSS" ng-click="finishBuy(cart)">Pague com o PagSeguro</button>
+</div>
+
+
+<div ng-hide="btnCheckout">
+<a href="{{url}}" target="popup">
+	<img src="src/data/cart/pagseguro.png" />
+</a>
+
+</div>
+
+<div style="text-align: center;" ng-submit="viewGame(cart)" ng-hide="!showGames" ng-click="show()">
+    <form >    
+        <img ng-src="{{cart.file}}" style="width:300px;height:400px;"></img> <br />
+    </form>
+</div>
+
+
